@@ -1,11 +1,14 @@
 pipeline {
     agent {
-        docker { image 'ubuntu' }
+        docker {
+            image 'maven:3.8.1-adoptopenjdk-11' 
+            args '-v /root/.m2:/root/.m2' 
+        }
     }
     stages {
-        stage('Test') {
+        stage('Build') { 
             steps {
-                sh 'lsb_release -a'
+                sh 'mvn -B -DskipTests clean package' 
             }
         }
     }
