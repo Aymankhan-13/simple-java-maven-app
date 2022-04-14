@@ -1,13 +1,12 @@
 pipeline {
     agent {
-        docker { image 'ubuntu:latest' }
+        docker { image 'node:16.13.1-alpine' }
     }
-}
     stages {
-        stage('Build') { 
+        stage('Test') {
             steps {
-                sh 'lsb_release -a' 
+                sh 'node --version'
             }
         }
     }
-
+}
